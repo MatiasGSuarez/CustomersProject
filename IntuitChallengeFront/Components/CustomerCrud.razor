@@ -1,0 +1,87 @@
+﻿@page "/CustomerCrud"
+
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.Calendars
+@using Syncfusion.Blazor.Buttons
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <div class="row d-flex">
+                
+                    <div class="col-2 my-auto" style="text-align:right">
+                        <label>Nombre</label>
+                    </div>
+                    <div class="col-4">
+                        <SfTextBox></SfTextBox>
+
+                    </div>
+
+                    <div class="col-2 my-auto" style="text-align:right">
+                        <label >Apellido</label>
+                    </div>
+                    <div class="col-4">
+                        <SfTextBox></SfTextBox>
+                    </div>
+            </div>
+
+            <div class="row d-flex">
+                
+                    <div class="col-2 my-auto mt-2" style="text-align:right">
+                        <label>Fecha de Nacimento</label>
+                    </div>
+                    <div class="col-4 mt-2">
+                        <SfDatePicker TValue="string"> </SfDatePicker>
+
+                    </div>
+
+                    <div class="col-2 my-auto mt-2" style="text-align:right">
+                            <label>Nro. de CUIL</label>
+                        </div>
+                    <div class="col-4 mt-2">
+                            <SfTextBox></SfTextBox>
+                    </div>
+            </div>        
+            <div class="row d-flex">
+                
+                    <div class="col-2 my-auto mt-2" style="text-align:right">
+                        <label>Dirección</label>
+                    </div>
+                    <div class="col-4 mt-2">
+                        <SfTextBox></SfTextBox>
+
+                    </div>
+
+                    <div class="col-2 my-auto mt-2" style="text-align:right">
+                            <label>Número de Teléfono</label>
+                        </div>
+                    <div class="col-4 mt-2">
+                            <SfTextBox></SfTextBox>
+                    </div>
+            </div>          
+
+            <div class="row d-flex">
+                
+                    <div class="col-2 my-auto mt-2" style="text-align:right">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-4 mt-2">
+                        <SfTextBox></SfTextBox>
+
+                    </div>
+
+                    <div class="col-2 my-auto mt-2" style="text-align:right">
+                            <SfButton CssClass="e-primary">Guardar</SfButton>
+                        </div>
+                    <div class="col-4 mt-2">
+                    <SfButton CssClass="e-danger">Volver</SfButton>
+                    </div>
+            </div>        
+
+        </div>
+    </div>
+
+</div>
+@code {
+
+}

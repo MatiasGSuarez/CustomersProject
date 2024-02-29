@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\**" />
+    <Content Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.Blazor.Buttons" Version="24.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Calendars" Version="24.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Grid" Version="24.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Inputs" Version="24.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Popups" Version="24.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="24.2.7" />
+  </ItemGroup>
+
+</Project>

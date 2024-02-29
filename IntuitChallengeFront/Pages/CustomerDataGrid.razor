@@ -1,0 +1,138 @@
+﻿@page "/CustomerDataGrid"
+
+  
+@using Syncfusion.Blazor
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Navigations
+
+
+@inject NavigationManager NavManager
+
+<div class="container mt-5">
+    <SfGrid
+        DataSource="@Orders"
+        @ref="Grid" 
+        Height="200"
+            Toolbar="Toolbaritems"
+        AllowSorting="true">
+
+        <GridEvents
+            OnToolbarClick="ToolbarClickHandler"
+                RowSelected="GetSelectedRecords"
+                TValue="OrderData">
+
+        </GridEvents>
+
+        <GridColumns>
+            <GridColumn Field=@nameof(OrderData.OrderID) HeaderText="Order ID" TextAlign="TextAlign.Right" IsPrimaryKey="true" Width="120"></GridColumn>
+            <GridColumn Field=@nameof(OrderData.CustomerID) HeaderText="Customer ID" Width="150"></GridColumn>
+            <GridColumn Field=@nameof(OrderData.ShipCity) HeaderText="Ship City" TextAlign="TextAlign.Right" Width="130"></GridColumn>
+            <GridColumn Field=@nameof(OrderData.ShipName) HeaderText="Ship Name" TextAlign="TextAlign.Right" Width="120"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+</div>
+
+@code {
+    #region Vars
+    private SfGrid<OrderData> Grid;
+
+    public List<OrderData> Orders { get; set; }
+
+    public OrderData SelectedItem = new OrderData();
+
+    private List<Object> Toolbaritems = new List<Object>()
+    {
+        new ToolbarItem() { Id = "Add", Text = "Agregar", PrefixIcon = "e-add" },
+        new ToolbarItem() { Id = "EditCustom", Text = "Editar", PrefixIcon = "e-edit" },
+        new ToolbarItem() { Id = "ReadOnly", Text = "Ver", PrefixIcon = "e-eye" },
+        new ToolbarItem() { Id = "Delete", Text = "Eliminar", PrefixIcon = "e-delete" },
+        new ToolbarItem() { Id = "Actualizar", Text = "Actualizar", PrefixIcon = "e-repeat" },
+        "Search"
+    };
+
+    #endregion
+
+    #region Methods
+
+    public async void ToolbarClickHandler(Syncfusion.Blazor.Navigations.ClickEventArgs args)
+    {
+        var caseSwitch = args.Item.Id;
+        switch (caseSwitch)
+        {
+            case "Add":
+                NavManager.NavigateTo("/CustomerCrud");
+                break;
+            case "EditCustom":
+                NavManager.NavigateTo("/CustomerCrud");
+                break;
+            case "Delete":
+                Grid.Refresh();
+                break;
+            case "Actualizar":
+                await Grid.Refresh();
+                StateHasChanged();
+                break;
+            // case "EditCustom" when SelectedItem == null:
+            // case "ReadOnly" when SelectedItem == null:
+            // case "Delete" when SelectedItem == null:
+            //     MessageViewer.ShowWarning("Debe seleccionar un ítem para continuar.");
+            //     break;
+        }
+    }
+    public async Task GetSelectedRecords(RowSelectEventArgs<OrderData> args)
+    {
+        if (args.Data != null)
+            SelectedItem = (OrderData)args.Data;
+    }
+
+    protected override void OnInitialized()
+    {
+        Orders = OrderData.GetAllRecords();
+    }
+    #endregion
+
+    public class OrderData
+    {
+        public static List<OrderData> Orders = new List<OrderData>();
+
+        public OrderData()
+        {
+
+        }
+        public OrderData(int? OrderID, string CustomerID, string ShipCity, string ShipName)
+        {
+            this.OrderID = OrderID;
+            this.CustomerID = CustomerID;
+            this.ShipCity = ShipCity;
+            this.ShipName = ShipName;
+        }
+
+        public static List<OrderData> GetAllRecords()
+        {
+            if (Orders.Count() == 0)
+            {
+                int code = 10;
+                for (int i = 1; i < 2; i++)
+                {
+                    Orders.Add(new OrderData(10248, "VINET", "Reims", "Vins et alcools Cheval"));
+                    Orders.Add(new OrderData(10249, "TOMSP", "Münster", "Toms Spezialitäten"));
+                    Orders.Add(new OrderData(10250, "HANAR", "Rio de Janeiro", "Hanari Carnes"));
+                    Orders.Add(new OrderData(10251, "VICTE", "Lyon", "Victuailles en stock"));
+                    Orders.Add(new OrderData(10252, "SUPRD", "Charleroi", "Suprêmes délices"));
+                    Orders.Add(new OrderData(10253, "HANAR", "Rio de Janeiro", "Hanari Carnes"));
+                    Orders.Add(new OrderData(10254, "CHOPS", "Bern", "Chop-suey Chinese"));
+                    Orders.Add(new OrderData(10255, "RICSU", "Genève", "Richter Supermarkt"));
+                    Orders.Add(new OrderData(10256, "WELLI", "Resende", "Wellington Importado"));
+                    code += 5;
+                }
+            }
+            return Orders;
+        }
+
+        public int? OrderID { get; set; }
+        public string CustomerID { get; set; }
+        public string ShipCity { get; set; }
+        public string ShipName { get; set; }
+    }
+}
+

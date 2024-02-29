@@ -1,0 +1,11 @@
+IntuitChallenge/bin/
+IntuitChallenge/obj/
+Model/bin/
+.vs/
+Model/obj/
+IntuitChallengeFront/bin/
+IntuitChallengeFront/obj/
+IntuitChallengeUI/bin/
+IntuitChallengeUI/obj/
+IntuitChallengeAPI/bin/
+IntuitChallengeAPI/obj/
